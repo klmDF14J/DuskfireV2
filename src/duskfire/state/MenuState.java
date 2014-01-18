@@ -1,4 +1,4 @@
-package duskfire.src.state;
+package duskfire.state;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -6,14 +6,12 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.gui.AbstractComponent;
 import org.newdawn.slick.gui.ComponentListener;
-import org.newdawn.slick.gui.MouseOverArea;
 import org.newdawn.slick.state.StateBasedGame;
 
-import duskfire.src.Duskfire;
-import duskfire.src.assets.AssetsManager;
-import duskfire.src.gui.Button;
-import duskfire.src.util.GameInfo;
-import duskfire.src.util.ScreenUtils;
+import duskfire.assets.AssetsManager;
+import duskfire.gui.Button;
+import duskfire.util.GameInfo;
+import duskfire.util.ScreenUtils;
 
 /**
  * @author Kyle Mandell

@@ -1,9 +1,6 @@
-package duskfire.src.util;
+package duskfire.util;
 
-import org.newdawn.slick.Font;
-import org.newdawn.slick.UnicodeFont;
-
-import duskfire.src.game.World;
+import duskfire.game.World;
 
 /**
  * @author Kyle Mandell

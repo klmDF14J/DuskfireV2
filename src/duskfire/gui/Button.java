@@ -1,4 +1,4 @@
-package duskfire.src.gui;
+package duskfire.gui;
 
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Font;
@@ -8,9 +8,8 @@ import org.newdawn.slick.gui.ComponentListener;
 import org.newdawn.slick.gui.GUIContext;
 import org.newdawn.slick.gui.MouseOverArea;
 
-import duskfire.src.Duskfire;
-import duskfire.src.assets.AssetsManager;
-import duskfire.src.util.GameInfo;
+import duskfire.assets.AssetsManager;
+import duskfire.util.GameInfo;
 
 /**
  * @author Kyle Mandell

@@ -1,11 +1,9 @@
-package duskfire.src.assets;
-
-import java.awt.Font;
+package duskfire.assets;
 
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
-import duskfire.src.util.GameInfo;
+import duskfire.util.GameInfo;
 
 /**
  * @author Kyle Mandell

@@ -1,4 +1,4 @@
-package duskfire.src.state;
+package duskfire.state;
 
 import java.io.File;
 
@@ -11,12 +11,11 @@ import org.newdawn.slick.gui.ComponentListener;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.util.Log;
 
-import duskfire.src.assets.AssetsManager;
-import duskfire.src.game.WorldManager;
-import duskfire.src.gui.Button;
-import duskfire.src.util.GameInfo;
-import duskfire.src.util.ScreenUtils;
-import duskfire.src.util.WorldInfo;
+import duskfire.assets.AssetsManager;
+import duskfire.game.WorldManager;
+import duskfire.gui.Button;
+import duskfire.util.GameInfo;
+import duskfire.util.ScreenUtils;
 
 /**
  * @author Kyle Mandell

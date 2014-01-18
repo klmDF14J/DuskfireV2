@@ -1,11 +1,11 @@
-package duskfire.src.game;
+package duskfire.game;
 
 import java.io.Serializable;
 
-import duskfire.src.tile.Tile;
-import duskfire.src.tile.TileManager;
-import duskfire.src.util.FileManager;
-import duskfire.src.util.WorldInfo;
+import duskfire.tile.Tile;
+import duskfire.tile.TileManager;
+import duskfire.util.FileManager;
+import duskfire.util.WorldInfo;
 
 /**
  * @author Kyle Mandell

@@ -1,7 +1,7 @@
-package duskfire.src.game;
+package duskfire.game;
 
-import duskfire.src.util.FileManager;
-import duskfire.src.util.WorldInfo;
+import duskfire.util.FileManager;
+import duskfire.util.WorldInfo;
 
 /**
  * @author Kyle Mandell

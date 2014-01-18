@@ -1,6 +1,5 @@
-package duskfire.src.util;
+package duskfire.util;
 
-import org.newdawn.slick.Font;
 import org.newdawn.slick.UnicodeFont;
 
 /**

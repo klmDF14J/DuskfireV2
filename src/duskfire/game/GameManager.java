@@ -1,8 +1,8 @@
-package duskfire.src.game;
+package duskfire.game;
 
-import duskfire.src.assets.AssetsManager;
-import duskfire.src.gui.GUIManager;
-import duskfire.src.tile.TileManager;
+import duskfire.assets.AssetsManager;
+import duskfire.gui.GUIManager;
+import duskfire.tile.TileManager;
 
 /**
  * @author Kyle Mandell

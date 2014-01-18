@@ -1,4 +1,4 @@
-package duskfire.src.gui;
+package duskfire.gui;
 
 import java.awt.Color;
 
@@ -6,8 +6,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.UnicodeFont;
 import org.newdawn.slick.font.effects.ColorEffect;
 
-import duskfire.src.assets.AssetsManager;
-import duskfire.src.util.GameInfo;
+import duskfire.util.GameInfo;
 
 /**
  * @author Kyle Mandell

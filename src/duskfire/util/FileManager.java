@@ -1,4 +1,4 @@
-package duskfire.src.util;
+package duskfire.util;
 
 import java.io.File;
 import java.io.FileInputStream;

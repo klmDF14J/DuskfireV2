@@ -1,4 +1,4 @@
-package duskfire.src.util;
+package duskfire.util;
 
 /**
  * @author Kyle Mandell

@@ -1,4 +1,4 @@
-package duskfire.src.tile;
+package duskfire.tile;
 
 import java.util.ArrayList;
 

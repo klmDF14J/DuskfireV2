@@ -1,4 +1,4 @@
-package duskfire.src.state;
+package duskfire.state;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;

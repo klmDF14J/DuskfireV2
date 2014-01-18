@@ -1,16 +1,16 @@
-package duskfire.src;
+package duskfire;
 
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
-import duskfire.src.game.GameManager;
-import duskfire.src.state.MapSelectionState;
-import duskfire.src.state.MenuState;
-import duskfire.src.state.PlayState;
-import duskfire.src.state.WorldGenerationState;
-import duskfire.src.util.GameInfo;
+import duskfire.game.GameManager;
+import duskfire.state.MapSelectionState;
+import duskfire.state.MenuState;
+import duskfire.state.PlayState;
+import duskfire.state.WorldGenerationState;
+import duskfire.util.GameInfo;
 
 /**
  * @author Kyle Mandell
