@@ -8,6 +8,9 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+/**
+ * @author Kyle Mandell
+ */
 public class FileManager {
 	
 	public static Object load(String fileToLoad) {

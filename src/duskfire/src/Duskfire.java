@@ -8,6 +8,8 @@ import org.newdawn.slick.state.StateBasedGame;
 import duskfire.src.game.GameManager;
 import duskfire.src.state.MapSelectionState;
 import duskfire.src.state.MenuState;
+import duskfire.src.state.PlayState;
+import duskfire.src.state.WorldGenerationState;
 import duskfire.src.util.GameInfo;
 
 /**
@@ -21,8 +23,6 @@ public class Duskfire extends StateBasedGame {
 
 	public static AppGameContainer app;
 	
-	public static int lastStateID;
-	
 	public static void main(String[] args) throws SlickException {
 		app = new AppGameContainer(new Duskfire(), GameInfo.screenX, GameInfo.screenY, false);
 		app.setTargetFrameRate(60);
@@ -35,5 +35,9 @@ public class Duskfire extends StateBasedGame {
 		
 		addState(new MenuState());
 		addState(new MapSelectionState());
+		addState(new WorldGenerationState());
+		addState(new PlayState());
+		
+		enterState(0);
 	}
 }

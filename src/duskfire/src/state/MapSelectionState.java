@@ -1,5 +1,7 @@
 package duskfire.src.state;
 
+import java.io.File;
+
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -7,11 +9,14 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.gui.AbstractComponent;
 import org.newdawn.slick.gui.ComponentListener;
 import org.newdawn.slick.state.StateBasedGame;
+import org.newdawn.slick.util.Log;
 
 import duskfire.src.assets.AssetsManager;
 import duskfire.src.game.WorldManager;
 import duskfire.src.gui.Button;
+import duskfire.src.util.GameInfo;
 import duskfire.src.util.ScreenUtils;
+import duskfire.src.util.WorldInfo;
 
 /**
  * @author Kyle Mandell
@@ -32,9 +37,16 @@ public class MapSelectionState extends GenericGameState {
 		saveButtons[index] = new Button("Save " + (index + 1), false, gc, button, ScreenUtils.getCenteredX(button.getWidth()), 50 + (index * 100), new ComponentListener() {
 			@Override
 			public void componentActivated(AbstractComponent arg0) {
-				WorldManager.loadWorld(index);
-				
-				sbg.enterState(2);
+				File file = new File(GameInfo.userDir + "/data/world_" + index + ".data");
+				if(file.exists()) {
+					WorldManager.loadWorld(index);
+					sbg.enterState(2);
+				}
+				else {
+					Log.info(" Creating new world. Save ID: " + index);
+					WorldManager.createWorld(index);
+					sbg.enterState(3);
+				}
 			}
 		});
 	}
@@ -51,5 +63,10 @@ public class MapSelectionState extends GenericGameState {
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
 		
+	}
+	
+	@Override
+	public int getID() {
+		return 1;
 	}
 }

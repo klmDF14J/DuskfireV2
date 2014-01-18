@@ -1,5 +1,7 @@
 package duskfire.src.game;
 
+import java.io.Serializable;
+
 import duskfire.src.tile.Tile;
 import duskfire.src.tile.TileManager;
 import duskfire.src.util.FileManager;
@@ -8,7 +10,7 @@ import duskfire.src.util.WorldInfo;
 /**
  * @author Kyle Mandell
  */
-public class World {
+public class World implements Serializable {
 	
 	private int[][] grid = new int[WorldInfo.worldX][WorldInfo.worldY];
 	

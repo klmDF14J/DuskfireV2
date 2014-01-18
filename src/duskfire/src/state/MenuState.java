@@ -88,4 +88,9 @@ public class MenuState extends GenericGameState {
 			}
 		}
 	}
+	
+	@Override
+	public int getID() {
+		return 0;
+	}
 }
