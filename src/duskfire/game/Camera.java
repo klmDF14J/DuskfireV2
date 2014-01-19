@@ -1,12 +1,16 @@
 package duskfire.game;
 
+import org.newdawn.slick.geom.Rectangle;
+
 public class Camera {
 	
-	private int x, y;
+	private int x, y, cameraViewportWidth, cameraViewportHeight;
 	
-	public Camera(int x, int y) {
+	public Camera(int x, int y, int cameraViewportWidth, int cameraViewportHeight) {
 		this.x = x;
 		this.y = y;
+		this.cameraViewportWidth = cameraViewportWidth;
+		this.cameraViewportHeight = cameraViewportHeight;
 	}
 	
 	public void setX(int x) {
@@ -31,5 +35,9 @@ public class Camera {
 	
 	public int getY() {
 		return y;
+	}
+	
+	public Rectangle getViewport() {
+		return new Rectangle(x, y, cameraViewportWidth, cameraViewportHeight);
 	}
 }

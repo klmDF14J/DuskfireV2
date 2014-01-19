@@ -5,6 +5,7 @@ import java.io.Serializable;
 import duskfire.tile.Tile;
 import duskfire.tile.TileManager;
 import duskfire.util.FileManager;
+import duskfire.util.GameInfo;
 import duskfire.util.WorldInfo;
 
 /**
@@ -12,17 +13,17 @@ import duskfire.util.WorldInfo;
  */
 public class World implements Serializable {
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	private int[][] grid = new int[WorldInfo.worldX][WorldInfo.worldY];
 	
 	private int worldID;
 	
+	private Camera camera;
+	
 	public World(int worldID) {
 		this.worldID = worldID;
+		this.camera = new Camera(0, 0, GameInfo.screenX, GameInfo.screenY);
 	}
 	
 	public void setTileID(int x, int y, int id) {
@@ -43,5 +44,9 @@ public class World implements Serializable {
 	
 	public void saveWorld() {
 		FileManager.save("world_" + worldID, this);
+	}
+
+	public Camera getCamera() {
+		return camera;
 	}
 }
