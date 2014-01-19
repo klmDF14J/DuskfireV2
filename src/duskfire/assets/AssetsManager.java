@@ -17,12 +17,18 @@ public class AssetsManager {
 	
 	public static ArrayList<Image> tileTextures;
 	
+	public static ArrayList<Image> playerTextures;
+	
 	public static void initAssets() {
 		tileTextures = new ArrayList<Image>();
 		
 		for(Tile tile : TileManager.tileList) {
 			tileTextures.add(getTexture(tile.getTextureName()));
 		}
+		
+		playerTextures = new ArrayList<Image>();
+		
+		playerTextures.add(getTexture("entity/player"));
 	}
 	
 	private static Object getGenericAsset(String imagePath) {

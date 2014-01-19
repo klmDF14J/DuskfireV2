@@ -4,6 +4,9 @@ import java.io.Serializable;
 
 import org.newdawn.slick.geom.Rectangle;
 
+/**
+ * @author Kyle Mandell
+ */
 public class Camera implements Serializable {
 
 	private static final long serialVersionUID = 2L;

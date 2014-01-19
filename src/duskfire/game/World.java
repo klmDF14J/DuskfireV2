@@ -1,7 +1,9 @@
 package duskfire.game;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
+import duskfire.game.entity.Player;
 import duskfire.tile.Tile;
 import duskfire.tile.TileManager;
 import duskfire.util.FileManager;
@@ -21,11 +23,21 @@ public class World implements Serializable {
 	
 	private Camera camera;
 	
+	public ArrayList<Player> playerList;
+	
 	public World(int worldID) {
 		this.worldID = worldID;
 		this.camera = new Camera(0, 0, GameInfo.screenX, GameInfo.screenY);
+		
+		playerList = new ArrayList<Player>();
+		
+		playerList.add(new Player(0, findPlayerSpawn()));
 	}
 	
+	private int findPlayerSpawn() {
+		return 0;
+	}
+
 	public void setTileID(int x, int y, int id) {
 		grid[x][y] = id;
 	}

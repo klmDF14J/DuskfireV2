@@ -17,6 +17,7 @@ public class TileManager {
 		tileList = new ArrayList<Tile>();
 		
 		air = new Tile(0).setName("Air").setTextureName("terrain/air").setSolid(false);
+		
 		grass = new Tile(1).setName("Grass").setTextureName("terrain/grass");
 		grass_left = new Tile(2).setName("Grass Left").setTextureName("terrain/grass_left");
 		grass_right = new Tile(3).setName("Grass Right").setTextureName("terrain/grass_right");

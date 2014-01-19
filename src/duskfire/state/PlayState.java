@@ -9,6 +9,7 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import duskfire.assets.AssetsManager;
 import duskfire.util.GameInfo;
+import duskfire.util.PlayerInfo;
 import duskfire.util.WorldInfo;
 
 /**
@@ -25,7 +26,11 @@ public class PlayState extends GenericGameState {
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
 		MenuState.background.draw();
 		renderMap();
+		g.draw(WorldInfo.world.playerList.get(0).getBounds());
+		AssetsManager.playerTextures.get(0).draw(WorldInfo.world.playerList.get(0).getX(), WorldInfo.world.playerList.get(0).getY());
 	}
+	
+	int cameraMoveSpeed = 10;
 	
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
@@ -33,17 +38,19 @@ public class PlayState extends GenericGameState {
 			sbg.enterState(1);
 		}
 		if(Keyboard.isKeyDown(Keyboard.KEY_LEFT)) {
-			WorldInfo.world.getCamera().moveX(-1);
+			//WorldInfo.world.getCamera().moveX(-cameraMoveSpeed);
+			WorldInfo.world.playerList.get(0).moveX(-PlayerInfo.moveSpeed);
 		}
 		if(Keyboard.isKeyDown(Keyboard.KEY_RIGHT)) {
-			WorldInfo.world.getCamera().moveX(1);
+			//WorldInfo.world.getCamera().moveX(cameraMoveSpeed);
+			WorldInfo.world.playerList.get(0).moveX(PlayerInfo.moveSpeed);
 		}
 		if(Keyboard.isKeyDown(Keyboard.KEY_UP)) {
-			WorldInfo.world.getCamera().moveY(-1);
+			//WorldInfo.world.getCamera().moveY(-cameraMoveSpeed);
+			WorldInfo.world.playerList.get(0).moveY(-PlayerInfo.jumpSpeed);
 		}
-		if(Keyboard.isKeyDown(Keyboard.KEY_DOWN)) {
-			WorldInfo.world.getCamera().moveY(1);
-		}
+		
+		WorldInfo.world.playerList.get(0).update();
 	}
 	
 	private void renderMap() {
