@@ -16,7 +16,6 @@ public class WorldManager {
 	}
 
 	public static void createWorld(int index) {
-		WorldInfo.world = new World();
-		FileManager.save("world_" + index, WorldInfo.world);
+		WorldInfo.world = new World(index);
 	}
 }

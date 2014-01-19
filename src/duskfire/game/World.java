@@ -12,9 +12,18 @@ import duskfire.util.WorldInfo;
  */
 public class World implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private int[][] grid = new int[WorldInfo.worldX][WorldInfo.worldY];
 	
 	private int worldID;
+	
+	public World(int worldID) {
+		this.worldID = worldID;
+	}
 	
 	public void setTileID(int x, int y, int id) {
 		grid[x][y] = id;

@@ -8,6 +8,8 @@ public class Tile {
 	public int tileID;
 	private String name = "Unknown", textureName = "missing_texture";
 	
+	private boolean isSolid = true;
+	
 	public Tile(int tileID) {
 		this.tileID = tileID;
 		
@@ -30,5 +32,14 @@ public class Tile {
 	
 	public String getTextureName() {
 		return textureName;
+	}
+
+	public Tile setSolid(boolean isSolid) {
+		this.isSolid = isSolid;
+		return this;
+	}
+	
+	public boolean isSolid() {
+		return isSolid;
 	}
 }

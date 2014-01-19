@@ -18,7 +18,7 @@ import duskfire.util.ScreenUtils;
  */
 public class MenuState extends GenericGameState {
 	
-	private static Image background;
+	public static Image background;
 	private static Image backgroundGrass, backgroundDirt;
 	private static Image title;
 	private static Button playButton, coOpButton, optionsButton;
