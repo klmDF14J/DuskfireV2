@@ -1,8 +1,12 @@
 package duskfire.game;
 
+import java.io.Serializable;
+
 import org.newdawn.slick.geom.Rectangle;
 
-public class Camera {
+public class Camera implements Serializable {
+
+	private static final long serialVersionUID = 2L;
 	
 	private int x, y, cameraViewportWidth, cameraViewportHeight;
 	

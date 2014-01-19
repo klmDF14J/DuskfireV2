@@ -4,6 +4,7 @@ import org.lwjgl.input.Keyboard;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.state.StateBasedGame;
 
 import duskfire.assets.AssetsManager;
@@ -37,13 +38,23 @@ public class PlayState extends GenericGameState {
 		if(Keyboard.isKeyDown(Keyboard.KEY_RIGHT)) {
 			WorldInfo.world.getCamera().moveX(1);
 		}
+		if(Keyboard.isKeyDown(Keyboard.KEY_UP)) {
+			WorldInfo.world.getCamera().moveY(-1);
+		}
+		if(Keyboard.isKeyDown(Keyboard.KEY_DOWN)) {
+			WorldInfo.world.getCamera().moveY(1);
+		}
 	}
 	
 	private void renderMap() {
 		for(int x = 0; x < WorldInfo.worldX; x++) {
 			for(int y = 0; y < WorldInfo.worldY; y++) {
-				int tileID = WorldInfo.world.getTileID(x, y);
-				AssetsManager.tileTextures.get(tileID).draw((x * GameInfo.tileSize) - WorldInfo.world.getCamera().getX(), (y * GameInfo.tileSize));
+				Rectangle viewportBounds = WorldInfo.world.getCamera().getViewport();
+				Rectangle tileBounds = new Rectangle((x * GameInfo.tileSize), (y * GameInfo.tileSize), GameInfo.tileSize, GameInfo.tileSize);
+				if(viewportBounds.intersects(tileBounds)) {
+					int tileID = WorldInfo.world.getTileID(x, y);
+					AssetsManager.tileTextures.get(tileID).draw((x * GameInfo.tileSize) - WorldInfo.world.getCamera().getX(), (y * GameInfo.tileSize) - WorldInfo.world.getCamera().getY());
+				}
 			}
 		}
 	}

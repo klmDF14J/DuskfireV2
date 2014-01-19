@@ -9,7 +9,7 @@ public class WorldInfo {
 
 	
 	public static int worldX = 200;
-	public static int worldY = 23;
+	public static int worldY = 50;
 	
 	public static World world;
 }

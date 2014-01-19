@@ -25,6 +25,7 @@ public class Duskfire extends StateBasedGame {
 	
 	public static void main(String[] args) throws SlickException {
 		app = new AppGameContainer(new Duskfire(), GameInfo.screenX, GameInfo.screenY, false);
+		app.setTargetFrameRate(60);
 		app.start();
 	}
 
