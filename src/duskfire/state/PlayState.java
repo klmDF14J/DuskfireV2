@@ -3,13 +3,16 @@ package duskfire.state;
 import org.lwjgl.input.Keyboard;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.state.StateBasedGame;
 
+import duskfire.assets.AnimationManager;
 import duskfire.assets.AssetsManager;
 import duskfire.game.entity.Player;
 import duskfire.util.GameInfo;
+import duskfire.util.KeyInfo;
 import duskfire.util.PlayerInfo;
 import duskfire.util.WorldInfo;
 
@@ -22,41 +25,39 @@ public class PlayState extends GenericGameState {
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
 		
 	}
+
+	@Override
+	public void enter(GameContainer container, StateBasedGame game) throws SlickException {
+		AnimationManager.initAnimations();
+	}
 	
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
-		
 		MenuState.background.draw();
 		renderMap();
 		Player player = WorldInfo.world.playerList.get(0);
-		AssetsManager.playerTextures.get(0).draw((player.getX()) - WorldInfo.world.playerList.get(0).getCamera().getX(), (player.getY()) - WorldInfo.world.playerList.get(0).getCamera().getY());
+		Image playerImage = AnimationManager.getPlayerAnimation().getFrame();
+		playerImage.draw((player.getX()) - WorldInfo.world.playerList.get(0).getCamera().getX(), (player.getY()) - WorldInfo.world.playerList.get(0).getCamera().getY() + 2);
 	}
 	
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
-		if(Keyboard.isKeyDown(Keyboard.KEY_ESCAPE)) {
+		if(Keyboard.isKeyDown(KeyInfo.escape)) {
 			sbg.enterState(1);
 		}
-		if(Keyboard.isKeyDown(Keyboard.KEY_LEFT)) {
-			WorldInfo.world.playerList.get(0).moveX(-PlayerInfo.moveSpeed);
-			//WorldInfo.world.playerList.get(0).getCamera().setX();
+		if(Keyboard.isKeyDown(KeyInfo.left)) {
+			WorldInfo.world.playerList.get(0).moveX(KeyInfo.left, -PlayerInfo.moveSpeed);
 		}
-		if(Keyboard.isKeyDown(Keyboard.KEY_RIGHT)) {
-			WorldInfo.world.playerList.get(0).moveX(PlayerInfo.moveSpeed);
-			//WorldInfo.world.playerList.get(0).getCamera().setX(WorldInfo.world.playerList.get(0).getCamera().getX() + (GameInfo.screenX / 2));
+		if(Keyboard.isKeyDown(KeyInfo.right)) {
+			WorldInfo.world.playerList.get(0).moveX(KeyInfo.right, PlayerInfo.moveSpeed);
 		}
-		if(Keyboard.isKeyDown(Keyboard.KEY_UP)) {
+		if(Keyboard.isKeyDown(KeyInfo.jump)) {
 			if(!WorldInfo.world.playerList.get(0).isFalling()) {
-				//WorldInfo.world.getCamera().moveY(-cameraMoveSpeed);
-				WorldInfo.world.playerList.get(0).moveY(-PlayerInfo.jumpSpeed);
+				WorldInfo.world.playerList.get(0).moveY(KeyInfo.jump, -PlayerInfo.jumpSpeed);
 			}
 		}
-		/*if(Keyboard.isKeyDown(Keyboard.KEY_DOWN)) {
-			if(!WorldInfo.world.playerList.get(0).isFalling()) {
-				//WorldInfo.world.getCamera().moveY(cameraMoveSpeed);
-				WorldInfo.world.playerList.get(0).moveY(PlayerInfo.jumpSpeed);
-			}
-		}*/
+		
+		AnimationManager.timeSinceLastWalkChange++;
 		
 		WorldInfo.world.playerList.get(0).update();
 	}

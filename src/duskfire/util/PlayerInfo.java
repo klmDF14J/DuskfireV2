@@ -10,5 +10,7 @@ public class PlayerInfo {
 	
 	public static final int fallSpeed = 3;
 	public static final int moveSpeed = 1;
-	public static final int jumpSpeed = 10;
+	public static final int jumpSpeed = 60;
+	public static int numberAnimations = 20;
+	public static int numberTypes = 1;
 }

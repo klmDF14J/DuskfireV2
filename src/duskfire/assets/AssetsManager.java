@@ -5,10 +5,12 @@ import java.util.ArrayList;
 
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.SpriteSheet;
 
 import duskfire.tile.Tile;
 import duskfire.tile.TileManager;
 import duskfire.util.GameInfo;
+import duskfire.util.PlayerInfo;
 
 /**
  * @author Kyle Mandell
@@ -17,18 +19,26 @@ public class AssetsManager {
 	
 	public static ArrayList<Image> tileTextures;
 	
+	private static SpriteSheet playerTextureSheet;
+	
 	public static ArrayList<Image> playerTextures;
 	
-	public static void initAssets() {
+	public static void initAssets() throws SlickException {
 		tileTextures = new ArrayList<Image>();
 		
 		for(Tile tile : TileManager.tileList) {
 			tileTextures.add(getTexture(tile.getTextureName()));
 		}
 		
+		playerTextureSheet = new SpriteSheet(GameInfo.userDir + "/assets/entity/player.png", 20, 48);
+		
 		playerTextures = new ArrayList<Image>();
 		
-		playerTextures.add(getTexture("entity/player"));
+		for(int x = 0; x < PlayerInfo.numberAnimations; x++) {
+			for(int y = 0; y < PlayerInfo.numberTypes; y++) {
+				playerTextures.add(playerTextureSheet.getSprite(x, y));
+			}
+		}
 	}
 	
 	private static Object getGenericAsset(String imagePath) {

@@ -3,12 +3,11 @@ package duskfire.game.entity;
 import java.io.Serializable;
 
 import org.newdawn.slick.geom.Rectangle;
-import org.newdawn.slick.util.Log;
 
 import duskfire.game.Camera;
-import duskfire.tile.Tile;
 import duskfire.util.EnumDirection;
 import duskfire.util.GameInfo;
+import duskfire.util.KeyInfo;
 import duskfire.util.PlayerInfo;
 import duskfire.util.WorldInfo;
 
@@ -24,6 +23,8 @@ public class Player implements Serializable {
 	private Camera camera;
 	
 	private boolean falling = false;
+
+	public int lastKey;
 	
 	public Player(int x, int y) {
 		this.playerX = x;
@@ -36,8 +37,8 @@ public class Player implements Serializable {
 		this.playerX = x; 
 	}
 	
-	public void moveX(int moveSize) {
-		tryMove(moveSize, moveSize < 0 ? EnumDirection.LEFT : EnumDirection.RIGHT);
+	public void moveX(int keyDown, int moveSize) {
+		tryMove(keyDown, moveSize, moveSize < 0 ? EnumDirection.LEFT : EnumDirection.RIGHT);
 	}
 
 	public int getX() {
@@ -48,8 +49,8 @@ public class Player implements Serializable {
 		this.playerY = y;
 	}
 	
-	public void moveY(int moveSize) {
-		tryMove(moveSize, moveSize < 0 ? EnumDirection.UP : EnumDirection.DOWN);
+	public void moveY(int keyDown, int moveSize) {
+		tryMove(keyDown, moveSize, moveSize < 0 ? EnumDirection.UP : EnumDirection.DOWN);
 	}
 	
 	public int getY() {
@@ -68,28 +69,33 @@ public class Player implements Serializable {
 		return camera;
 	}
 	
-	private boolean tryMove(int moveSize, EnumDirection direction) {
+	private boolean tryMove(int keyDown, int moveSize, EnumDirection direction) {
+		lastKey = keyDown;
 		if(direction == EnumDirection.LEFT) {
 			if((getX() - moveSize) >= 0 && canMove(EnumDirection.LEFT)) {
 				playerX += moveSize;
+				getCamera().setX((getX() - PlayerInfo.moveSpeed) - (GameInfo.screenX / 2));
 				return true;
 			}
 		}
 		if(direction == EnumDirection.RIGHT) {
 			if((getX() + moveSize) < WorldInfo.worldX * GameInfo.tileSize && canMove(EnumDirection.RIGHT)) {
 				playerX += moveSize;
+				getCamera().setX((getX() + PlayerInfo.moveSpeed) - (GameInfo.screenX / 2));
 				return true;
 			}
 		}
 		if(direction == EnumDirection.UP) {
 			if(((getY() + PlayerInfo.playerHeight) - moveSize) >= 0) {
 				playerY += moveSize;
+				getCamera().setY((getY() - PlayerInfo.jumpSpeed) - (GameInfo.screenY / 2));
 				return true;
 			}
 		}
 		if(direction == EnumDirection.DOWN) {
 			if((getY() + PlayerInfo.playerHeight) + moveSize < GameInfo.screenY) {
 				playerY += moveSize;
+				getCamera().setY((getY() + PlayerInfo.fallSpeed) - (GameInfo.screenY / 2));
 				return true;
 			}
 		}
@@ -136,10 +142,10 @@ public class Player implements Serializable {
 	
 	public void update() {
 		if(canMove(EnumDirection.DOWN)) {
-			boolean move = tryMove(PlayerInfo.fallSpeed, EnumDirection.DOWN);
+			boolean move = tryMove(KeyInfo.down, PlayerInfo.fallSpeed, EnumDirection.DOWN);
 			if(move) {
 				setFalling(true);
-				getCamera().setY((getY() + PlayerInfo.fallSpeed) - (GameInfo.screenY / 2));
+				getCamera().setX((getX() - PlayerInfo.moveSpeed) - (GameInfo.screenX / 2));
 			}
 		}
 		else {
