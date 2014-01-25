@@ -21,21 +21,14 @@ public class World implements Serializable {
 	
 	private int worldID;
 	
-	private Camera camera;
-	
 	public ArrayList<Player> playerList;
 	
 	public World(int worldID) {
 		this.worldID = worldID;
-		this.camera = new Camera(0, 0, GameInfo.screenX, GameInfo.screenY);
 		
 		playerList = new ArrayList<Player>();
 		
-		playerList.add(new Player(0, findPlayerSpawn()));
-	}
-	
-	private int findPlayerSpawn() {
-		return 0;
+		playerList.add(new Player(GameInfo.screenX / 2, 0));
 	}
 
 	public void setTileID(int x, int y, int id) {
@@ -56,9 +49,5 @@ public class World implements Serializable {
 	
 	public void saveWorld() {
 		FileManager.save("world_" + worldID, this);
-	}
-
-	public Camera getCamera() {
-		return camera;
 	}
 }

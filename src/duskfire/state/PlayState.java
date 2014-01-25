@@ -8,6 +8,7 @@ import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.state.StateBasedGame;
 
 import duskfire.assets.AssetsManager;
+import duskfire.game.entity.Player;
 import duskfire.util.GameInfo;
 import duskfire.util.PlayerInfo;
 import duskfire.util.WorldInfo;
@@ -24,13 +25,12 @@ public class PlayState extends GenericGameState {
 	
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
+		
 		MenuState.background.draw();
 		renderMap();
-		g.draw(WorldInfo.world.playerList.get(0).getBounds());
-		AssetsManager.playerTextures.get(0).draw(WorldInfo.world.playerList.get(0).getX(), WorldInfo.world.playerList.get(0).getY());
+		Player player = WorldInfo.world.playerList.get(0);
+		AssetsManager.playerTextures.get(0).draw((player.getX()) - WorldInfo.world.playerList.get(0).getCamera().getX(), (player.getY()) - WorldInfo.world.playerList.get(0).getCamera().getY());
 	}
-	
-	int cameraMoveSpeed = 10;
 	
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
@@ -38,17 +38,25 @@ public class PlayState extends GenericGameState {
 			sbg.enterState(1);
 		}
 		if(Keyboard.isKeyDown(Keyboard.KEY_LEFT)) {
-			//WorldInfo.world.getCamera().moveX(-cameraMoveSpeed);
 			WorldInfo.world.playerList.get(0).moveX(-PlayerInfo.moveSpeed);
+			//WorldInfo.world.playerList.get(0).getCamera().setX();
 		}
 		if(Keyboard.isKeyDown(Keyboard.KEY_RIGHT)) {
-			//WorldInfo.world.getCamera().moveX(cameraMoveSpeed);
 			WorldInfo.world.playerList.get(0).moveX(PlayerInfo.moveSpeed);
+			//WorldInfo.world.playerList.get(0).getCamera().setX(WorldInfo.world.playerList.get(0).getCamera().getX() + (GameInfo.screenX / 2));
 		}
 		if(Keyboard.isKeyDown(Keyboard.KEY_UP)) {
-			//WorldInfo.world.getCamera().moveY(-cameraMoveSpeed);
-			WorldInfo.world.playerList.get(0).moveY(-PlayerInfo.jumpSpeed);
+			if(!WorldInfo.world.playerList.get(0).isFalling()) {
+				//WorldInfo.world.getCamera().moveY(-cameraMoveSpeed);
+				WorldInfo.world.playerList.get(0).moveY(-PlayerInfo.jumpSpeed);
+			}
 		}
+		/*if(Keyboard.isKeyDown(Keyboard.KEY_DOWN)) {
+			if(!WorldInfo.world.playerList.get(0).isFalling()) {
+				//WorldInfo.world.getCamera().moveY(cameraMoveSpeed);
+				WorldInfo.world.playerList.get(0).moveY(PlayerInfo.jumpSpeed);
+			}
+		}*/
 		
 		WorldInfo.world.playerList.get(0).update();
 	}
@@ -56,11 +64,11 @@ public class PlayState extends GenericGameState {
 	private void renderMap() {
 		for(int x = 0; x < WorldInfo.worldX; x++) {
 			for(int y = 0; y < WorldInfo.worldY; y++) {
-				Rectangle viewportBounds = WorldInfo.world.getCamera().getViewport();
+				Rectangle viewportBounds = WorldInfo.world.playerList.get(0).getCamera().getViewport();
 				Rectangle tileBounds = new Rectangle((x * GameInfo.tileSize), (y * GameInfo.tileSize), GameInfo.tileSize, GameInfo.tileSize);
 				if(viewportBounds.intersects(tileBounds)) {
 					int tileID = WorldInfo.world.getTileID(x, y);
-					AssetsManager.tileTextures.get(tileID).draw((x * GameInfo.tileSize) - WorldInfo.world.getCamera().getX(), (y * GameInfo.tileSize) - WorldInfo.world.getCamera().getY());
+					AssetsManager.tileTextures.get(tileID).draw((x * GameInfo.tileSize) - WorldInfo.world.playerList.get(0).getCamera().getX(), (y * GameInfo.tileSize) - WorldInfo.world.playerList.get(0).getCamera().getY());
 				}
 			}
 		}

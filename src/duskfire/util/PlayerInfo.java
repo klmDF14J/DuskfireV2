@@ -5,10 +5,10 @@ package duskfire.util;
  */
 public class PlayerInfo {
 
-	public static int playerWidth = 32;
-	public static int playerHeight = 64;
+	public static final int playerWidth = 20;
+	public static final int playerHeight = 48;
 	
-	public static int fallSpeed = 3;
-	public static int moveSpeed = 1;
-	public static int jumpSpeed = 1;
+	public static final int fallSpeed = 3;
+	public static final int moveSpeed = 1;
+	public static final int jumpSpeed = 10;
 }

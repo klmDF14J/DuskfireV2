@@ -7,7 +7,7 @@ import duskfire.game.World;
  */
 public class WorldInfo {
 
-	public static int worldX = 10;
+	public static int worldX = 500;
 	public static int worldY = 50;
 	
 	public static World world;
